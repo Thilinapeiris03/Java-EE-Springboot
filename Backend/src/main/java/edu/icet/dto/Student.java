@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 public class Student {
     private String firstName;
     private String lastName;
+    private String batch;
+    private String institute;
 
     public void setFirstName(String firstName) {
         if("".equalsIgnoreCase(firstName)) return;
@@ -17,5 +19,6 @@ public class Student {
 
         this.firstName = firstName;
     }
+
 
 }

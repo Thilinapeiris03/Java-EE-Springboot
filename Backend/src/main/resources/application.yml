@@ -1,0 +1,14 @@
+student :
+  institute : ICET
+
+spring:
+  datasource:
+    url : jdbc:mysql://localhost:3306/institute
+    username : root
+    password : Thilina@2003
+
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update

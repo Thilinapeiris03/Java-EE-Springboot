@@ -1,27 +1,49 @@
 package edu.icet.controller;
 
+import edu.icet.dao.StudentEntity;
 import edu.icet.dto.Student;
 import edu.icet.service.StudentService;
-import edu.icet.service.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/student")
+
 public class StudentController {
     @Autowired
     StudentService service;
 
-    @GetMapping("/get-student")
-    public ArrayList<Student> getStudent(){
-        //StudentServiceImpl service= new StudentServiceImpl();
+    @GetMapping
+    public Iterable<StudentEntity> getStudent(String name){
         return service.getStudent();
     }
 
+    @GetMapping("/{firstName}")
+    public Iterable<StudentEntity> getStudentByFirstName(@PathVariable
+                                                             String firstName){
+        return service.getStudentByFirstName(firstName);
+    }
+
+    @GetMapping("/{firstName}/{lastName}")
+    public Iterable<StudentEntity> getStudentByFirstNameAndLastName(@PathVariable
+                                                             String firstName,
+                                                                   @PathVariable
+                                                                   String lastName){
+
+        return service.getStudentByFistNameAndLastName(firstName,lastName);
+    }
+
+    @PostMapping
+    public void createStatement(@RequestBody Student student){
+        service.createStudent(student);
+    }
+
+    @DeleteMapping("/{firstName}")
+    public long deleteByFirstName(@PathVariable String firstName){
+        return service.deleteByFirstName(firstName);
+    }
 
 
 }
